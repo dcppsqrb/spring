@@ -213,27 +213,27 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	<repositories>
-		<repository>
-			<id>nexus-public</id>
-			<layout>default</layout>
-			<url>https://ubuntu01.domain.local:8444/repository/maven-public/</url>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>nexus-public</id>
-			<url>https://ubuntu01.domain.local:8444/repository/maven-public/</url>
-		</pluginRepository>
-	</pluginRepositories>
-	<distributionManagement>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<url>https://ubuntu01.domain.local:8444/repository/maven-snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>nexus-releases</id>
-			<url>https://ubuntu01.domain.local:8444/repository/maven-releases</url>
-		</repository>
-	</distributionManagement>
+<!--	<repositories>-->
+<!--		<repository>-->
+<!--			<id>nexus-public</id>-->
+<!--			<layout>default</layout>-->
+<!--			<url>https://ubuntu01.domain.local:8444/repository/maven-public/</url>-->
+<!--		</repository>-->
+<!--	</repositories>-->
+<!--	<pluginRepositories>-->
+<!--		<pluginRepository>-->
+<!--			<id>nexus-public</id>-->
+<!--			<url>https://ubuntu01.domain.local:8444/repository/maven-public/</url>-->
+<!--		</pluginRepository>-->
+<!--	</pluginRepositories>-->
+<!--	<distributionManagement>-->
+<!--		<snapshotRepository>-->
+<!--			<id>nexus-snapshots</id>-->
+<!--			<url>https://ubuntu01.domain.local:8444/repository/maven-snapshots</url>-->
+<!--		</snapshotRepository>-->
+<!--		<repository>-->
+<!--			<id>nexus-releases</id>-->
+<!--			<url>https://ubuntu01.domain.local:8444/repository/maven-releases</url>-->
+<!--		</repository>-->
+<!--	</distributionManagement>-->
 </project>
