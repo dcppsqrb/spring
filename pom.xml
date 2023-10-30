@@ -36,8 +36,8 @@
 
 	<modules>
 		<module>catalog-service</module>
-		<module>batch-service</module>
-		<module>entity-module</module>
+<!--		<module>batch-service</module>-->
+<!--		<module>entity-module</module>-->
 		<module>common-module</module>
 	</modules>
 
