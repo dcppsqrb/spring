@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: catalog-service
+    
+  profiles:
+    active:
+    - common-module  
+    
+server:
+  port: 9001

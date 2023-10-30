@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: batch-service
+
+  profiles:
+    active:
+    - common-module
+    - entity-module
+          
+  batch:
+    job:
+      enabled: true
+    jdbc:
+      initialize-schema: always
+      
+app.csv.fileHeaders: order_ref,amount,order_date,note    
