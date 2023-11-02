@@ -9,23 +9,24 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<artifactId>common-module</artifactId>
-	<name>common-module</name>
-	<description>Provides functionality for common.</description>
+	<artifactId>config-service</artifactId>
+	<name>config-service</name>
+	<description>Provides functionality for centralizing the application configuration.</description>
 	<properties>
 	</properties>
-	<dependencies>		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-			<scope>provided</scope>
-			<optional>true</optional>
-		</dependency>		
+	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-			<scope>provided</scope>
-			<optional>true</optional>
+			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>

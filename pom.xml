@@ -39,6 +39,7 @@
 <!--		<module>batch-service</module>-->
 <!--		<module>entity-module</module>-->
 		<module>common-module</module>
+		<module>config-service</module>
 	</modules>
 
 	<dependencyManagement>

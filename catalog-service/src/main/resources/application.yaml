@@ -5,8 +5,20 @@ spring:
   profiles:
     active:
     - common-module  
-#    - testdata
-    
+    - testdata
+  
+  config:
+    import: "optional:configserver:"
+  cloud:
+    config:
+      uri: http://localhost:8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+              
 server:
   port: 9001
 
