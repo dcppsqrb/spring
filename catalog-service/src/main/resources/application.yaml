@@ -5,6 +5,10 @@ spring:
   profiles:
     active:
     - common-module  
+#    - testdata
     
 server:
   port: 9001
+
+polar:
+  greeting: Welcome to the local book catalog!
