@@ -5,7 +5,7 @@ import java.time.ZoneId;
 
 import org.springframework.batch.item.ItemProcessor;
 
-import local.example.entitymodule.entity.Order;
+import local.example.batchservice.entity.Order;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

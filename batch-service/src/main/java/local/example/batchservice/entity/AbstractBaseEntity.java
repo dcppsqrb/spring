@@ -1,4 +1,4 @@
-package local.example.entitymodule.entity;
+package local.example.batchservice.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

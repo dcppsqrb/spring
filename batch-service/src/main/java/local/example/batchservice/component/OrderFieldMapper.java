@@ -4,7 +4,7 @@ import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.stereotype.Component;
 
-import local.example.entitymodule.entity.Order;
+import local.example.batchservice.entity.Order;
 
 @Component
 public class OrderFieldMapper implements FieldSetMapper<Order> {

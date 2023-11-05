@@ -31,13 +31,13 @@ public class BookControllerAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-		var errors = new HashMap<String, String>();
+    	Map<String, String> errorsMap = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach(error -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
-			errors.put(fieldName, errorMessage);
+            errorsMap.put(fieldName, errorMessage);
         });
-		return errors;
+		return errorsMap;
     }
 
 

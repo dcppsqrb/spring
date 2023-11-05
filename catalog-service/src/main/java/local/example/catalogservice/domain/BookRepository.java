@@ -2,12 +2,15 @@ package local.example.catalogservice.domain;
 
 import java.util.Optional;
 
-public interface BookRepository {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
-	Iterable<Book> findAll();
+
+public interface BookRepository extends CrudRepository<Book, Long>{
+
 	Optional<Book> findByIsbn(String isbn);
 	boolean existsByIsbn(String isbn);
-	Book save(Book book);
-	void deleteByIsbn(String isbn);
 
+	@Transactional
+	void deleteByIsbn(String isbn);
 }

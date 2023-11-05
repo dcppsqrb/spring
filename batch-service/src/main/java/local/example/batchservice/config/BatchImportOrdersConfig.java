@@ -21,9 +21,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import jakarta.persistence.EntityManagerFactory;
 import local.example.batchservice.component.OrderFieldMapper;
+import local.example.batchservice.entity.Order;
 import local.example.batchservice.listener.CustomJobListener;
 import local.example.batchservice.processor.OrderProcessor;
-import local.example.entitymodule.entity.Order;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

@@ -4,23 +4,81 @@ spring:
     
   profiles:
     active:
-    - common-module  
     - testdata
+  
+  mandatory-file-encoding: UTF-8   
   
   config:
     import: "optional:configserver:"
+    
   cloud:
     config:
+      request-connect-timeout: 5000 # 5s
+      request-read-timeout: 5000 # 5s
+      fail-fast: false # In production, set to true
+      retry:
+        max-attempts: 6
+        initial-interval: 1000 # 1s
+        max-interval: 2000 # 2s
+        multiplier: 1.1  
+      enabled: false
       uri: http://localhost:8888
 
+  datasource:
+    url: jdbc:postgresql://ubuntu01:5432/postgres?currentSchema=dev
+    username: postgres
+    password: postgres    
+    hikari:
+      initializationFailTimeout: 60000     
+      schema: dev
+      connection-timeout: 2000 #ms
+      maximum-pool-size: 5
+      
+  flyway:
+    enabled: true
+    baseline-version: 1.0
+    baseline-on-migrate: true
+    validate-on-migrate: true
+    out-of-order: false
+    target: latest
+    locations: classpath:sql/migration
+    url: jdbc:postgresql://ubuntu01:5432/postgres?currentSchema=dev
+    user: postgres
+    password: postgres
+    default-schema: dev
+    
+  jpa:
+    hibernate:
+      ddl-auto: validate      
+    generate-ddl: false    
+    properties:
+      hibernate:    
+#        generate_statistics: true
+#        dialect: org.hibernate.dialect.PostgreSQLDialect #deprecated
+    show-sql: true   
+    open-in-view: false     
+       
+  sql:
+    init:
+      platform: postgres
+      mode: never   
+              
 management:
   endpoints:
     web:
       exposure:
         include: refresh
-              
+
+                   
 server:
   port: 9001
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s        
+    threads:
+      max: 50
+      min-spare: 5  
 
+          
 polar:
   greeting: Welcome to the local book catalog!
