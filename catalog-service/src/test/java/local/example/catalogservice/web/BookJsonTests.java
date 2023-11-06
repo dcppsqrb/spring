@@ -4,11 +4,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import local.example.catalogservice.domain.Book;
 
@@ -17,8 +20,16 @@ import local.example.catalogservice.domain.Book;
 class BookJsonTests {
 	
 	@Autowired
+	ObjectMapper objectMapper;
+	
+	@Autowired
 	private JacksonTester<Book> json;
 
+	 @BeforeEach
+     public void setup() {
+         JacksonTester.initFields(this, objectMapper);
+     }
+	 
 	@Test
     void testSerialize() throws Exception {
         var now = LocalDateTime.now();

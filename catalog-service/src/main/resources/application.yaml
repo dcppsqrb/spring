@@ -21,7 +21,7 @@ spring:
         initial-interval: 1000 # 1s
         max-interval: 2000 # 2s
         multiplier: 1.1  
-      enabled: false
+      enabled: true
       uri: http://localhost:8888
 
   datasource:
@@ -42,9 +42,9 @@ spring:
     out-of-order: false
     target: latest
     locations: classpath:sql/migration
-    url: jdbc:postgresql://ubuntu01:5432/postgres?currentSchema=dev
-    user: postgres
-    password: postgres
+    #url: jdbc:postgresql://ubuntu01:5432/postgres?currentSchema=dev
+    #user: postgres
+    #password: postgres
     default-schema: dev
     
   jpa:

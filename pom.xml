@@ -184,19 +184,19 @@
 					</executions>
 					<configuration>
 						<executable>false</executable>
-						<jvmArguments>-Dfile.encoding=UTF-8
-							-Djdk.serialSetFilterAfterRead=true</jvmArguments>
+						<jvmArguments>-Dfile.encoding=UTF-8	-Djdk.serialSetFilterAfterRead=true</jvmArguments>
 						<layers>
 							<enabled>true</enabled>
 						</layers>
 						<image>
 	                        <name>ghcr.io/${env.GITHUB_USERNAME}/${project.artifactId}:${project.version}</name>
-	                        <publish>true</publish>
+	                        <publish>false</publish>
 	                    </image>
 	                    <docker>
 	                        <publishRegistry>
-	                            <username>${env.GITHUB_USERNAME}</username>
-	                            <password>${env.GITHUB_PASSWORD}</password>
+<!--	                            <username>${env.GITHUB_USERNAME}</username>-->
+<!--	                            <password>${env.GITHUB_PASSWORD}</password>-->
+	                            <token>${env.GITHUB_TOKEN}</token>
 	                            <url>https://ghcr.io</url>
 	                        </publishRegistry>
 	                    </docker>
