@@ -11,7 +11,6 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import local.example.catalogservice.domain.Book;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Disabled
 class CatalogServiceApplicationTests {
 
 	@Autowired

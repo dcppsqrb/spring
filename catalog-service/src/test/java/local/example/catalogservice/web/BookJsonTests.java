@@ -3,20 +3,25 @@ package local.example.catalogservice.web;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import local.example.catalogservice.config.BaseConfig;
 import local.example.catalogservice.domain.Book;
+import lombok.extern.slf4j.Slf4j;
 
 @JsonTest
-@Disabled
+@Import(BaseConfig.class)
+@ContextConfiguration(classes = BaseConfig.class)
+@Slf4j
 class BookJsonTests {
 	
 	@Autowired
@@ -25,14 +30,10 @@ class BookJsonTests {
 	@Autowired
 	private JacksonTester<Book> json;
 
-	 @BeforeEach
-     public void setup() {
-         JacksonTester.initFields(this, objectMapper);
-     }
-	 
 	@Test
     void testSerialize() throws Exception {
         var now = LocalDateTime.now();
+        
         var book = new Book(394L, "1234567890", "Title", "Author", 9.90, "Polarsophia", now, now, 21);
         var jsonContent = json.write(book);
         assertThat(jsonContent).extractingJsonPathNumberValue("@.id")
@@ -48,9 +49,9 @@ class BookJsonTests {
         assertThat(jsonContent).extractingJsonPathStringValue("@.publisher")
                 .isEqualTo(book.getPublisher());
         assertThat(jsonContent).extractingJsonPathStringValue("@.createdDate")
-                .isEqualTo(book.getCreatedDate().toString());
+                .isEqualTo(book.getCreatedDate().format(DateTimeFormatter.ISO_DATE_TIME));
         assertThat(jsonContent).extractingJsonPathStringValue("@.lastModifiedDate")
-                .isEqualTo(book.getLastModifiedDate().toString());
+                .isEqualTo(book.getLastModifiedDate().format(DateTimeFormatter.ISO_DATE_TIME));
         assertThat(jsonContent).extractingJsonPathNumberValue("@.version")
                 .isEqualTo(book.getVersion());
     }
