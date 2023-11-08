@@ -192,14 +192,14 @@
 	                        <name>ghcr.io/${env.GITHUB_USERNAME}/${project.artifactId}:${project.version}</name>
 	                        <publish>false</publish>
 	                    </image>
-	                    <docker>
-	                        <publishRegistry>
+<!--	                    <docker>-->
+<!--	                        <publishRegistry>-->
 <!--	                            <username>${env.GITHUB_USERNAME}</username>-->
 <!--	                            <password>${env.GITHUB_PASSWORD}</password>-->
-	                            <token>${env.GITHUB_TOKEN}</token>
-	                            <url>https://ghcr.io</url>
-	                        </publishRegistry>
-	                    </docker>
+<!--	                            <token>${env.GITHUB_TOKEN}</token>-->
+<!--	                            <url>https://ghcr.io</url>-->
+<!--	                        </publishRegistry>-->
+<!--	                    </docker>-->
 					</configuration>
 				</plugin>
 				<plugin>
