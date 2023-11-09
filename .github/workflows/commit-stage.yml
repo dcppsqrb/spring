@@ -3,7 +3,7 @@ on: push
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: library/catalog-service
+  IMAGE_NAME: dcppsqrb/catalog-service
   VERSION: 0.0.1-SNAPSHOT
 
 jobs:
