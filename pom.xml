@@ -17,6 +17,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+		<!-- Docker Registory --->
+		<docker.registory>ghcr.io</docker.registory>
+		<docker.registory.actor>dcppsqrb</docker.registory.actor>
 		<!-- dependency version -->
 		<spring.cloud.dependencies.version>2022.0.4</spring.cloud.dependencies.version>
 		<springdoc-openapi.version>2.2.0</springdoc-openapi.version>
@@ -189,7 +192,7 @@
 							<enabled>true</enabled>
 						</layers>
 						<image>
-	                        <name>ghcr.io/dcppsqrb/${project.artifactId}:${project.version}</name>
+	                        <name>${docker.registory}/${docker.registory.actor}/${project.artifactId}:${project.version}</name>
 <!--	                        <publish>false</publish>-->
 	                    	</image>
 <!--	                    <docker>-->
