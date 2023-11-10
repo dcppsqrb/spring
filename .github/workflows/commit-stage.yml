@@ -73,6 +73,7 @@ jobs:
         if: success() || failure()
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
+          category: catalog-service
       - name: Log into container registry catalog-service
         uses: docker/login-action@v2
         with:
@@ -93,6 +94,7 @@ jobs:
         if: success() || failure()
         with:
           sarif_file: ${{ steps.scan1.outputs.sarif }}
+          category: config-service
       - name: Log into container registry config-service
         uses: docker/login-action@v2
         with:
