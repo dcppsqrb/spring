@@ -3,7 +3,8 @@ on: push
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.actor }}/catalog-service
+  IMAGE_NAME_CATALOG_SERVICE: ${{ github.actor }}/catalog-service
+  IMAGE_NAME_CONFIG_SERVICE: ${{ github.actor }}/config-service
   VERSION: 0.0.1-SNAPSHOT
 
 jobs:
@@ -60,23 +61,43 @@ jobs:
         run: |
           chmod +x mvnw
           ./mvnw spring-boot:build-image
-      - name: OCI image vulnerability scanning
+      - name: OCI image vulnerability scanning catalog-service
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image:  ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          image:  ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_CATALOG_SERVICE }}:${{ env.VERSION }}
           fail-build: false
           severity-cutoff: high
-      - name: Upload vulnerability report
+      - name: Upload vulnerability report catalog-service
         uses: github/codeql-action/upload-sarif@v2
         if: success() || failure()
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
-      - name: Log into container registry
+      - name: Log into container registry catalog-service
         uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish container image
-        run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+      - name: Publish container image catalog-service
+        run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_CATALOG_SERVICE }}:${{ env.VERSION }}
+      - name: OCI image vulnerability scanning config-service
+        uses: anchore/scan-action@v3
+        id: scan
+        with:
+          image:  ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_CONFIG_SERVICE }}:${{ env.VERSION }}
+          fail-build: false
+          severity-cutoff: high
+      - name: Upload vulnerability report config-service
+        uses: github/codeql-action/upload-sarif@v2
+        if: success() || failure()
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+      - name: Log into container registry config-service
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish container image config-service
+        run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_CONFIG_SERVICE }}:${{ env.VERSION }}  
