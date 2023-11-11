@@ -192,7 +192,8 @@
 							<enabled>true</enabled>
 						</layers>
 						<image>
-	                        <name>${docker.registory}/${docker.registory.actor}/${project.artifactId}:${project.version}</name>
+<!--	                        <name>${docker.registory}/${docker.registory.actor}/${project.artifactId}:${project.version}</name>-->
+	                        <name>${project.artifactId}:${project.version}</name>
 <!--	                        <publish>false</publish>-->
 	                    	</image>
 <!--	                    <docker>-->
