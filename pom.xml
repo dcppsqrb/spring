@@ -29,7 +29,7 @@
 		<webjars-locator.version>0.45</webjars-locator.version>
 		<spring-vault.version>3.0.4</spring-vault.version>
 		<org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
-		<dependency-check-maven.version>7.1.1</dependency-check-maven.version>
+		<dependency-check-maven.version>8.4.2</dependency-check-maven.version>
 		<guava.version>32.1.3-jre</guava.version>
 		<passay.version>1.6.3</passay.version>
 		<jquery.version>3.4.1</jquery.version>
