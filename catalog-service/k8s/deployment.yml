@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: catalog-service
-          image: catalog-service
+          image: catalog-service:0.0.1-SNAPSHOT
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -33,3 +33,7 @@ spec:
               value: jdbc:postgresql://ubuntu01:5432/postgres?currentSchema=dev
             - name: SPRING_PROFILES_ACTIVE
               value: testdata
+            - name: JAVA_TOOL_OPTIONS
+              value: -Dfile.encoding=UTF-8  
+            - name: TZ
+              value: Asia/Hong_Kong

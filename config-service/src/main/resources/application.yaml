@@ -1,6 +1,7 @@
 spring:
   application:
     name: config-service
+    
   cloud:
     config:
       server:
@@ -11,11 +12,20 @@ spring:
           clone-on-start: true
           force-pull: true
           searchPaths: config-repo
-          
-          
+            
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+            
   profiles:
     active:
     - common-module
     
 server:
-  port: 8888    
+  port: 8888   
+  shutdown: graceful
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5 
