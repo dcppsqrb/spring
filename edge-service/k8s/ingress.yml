@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: polar-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: edge-service
+                port:
+                  number: 80
+                  
+# install NGINX Ingress Controller
+#https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-manifests/                  

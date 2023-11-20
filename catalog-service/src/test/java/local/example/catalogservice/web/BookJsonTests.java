@@ -16,12 +16,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import local.example.catalogservice.config.BaseConfig;
 import local.example.catalogservice.domain.Book;
-import lombok.extern.slf4j.Slf4j;
 
 @JsonTest
 @Import(BaseConfig.class)
 @ContextConfiguration(classes = BaseConfig.class)
-@Slf4j
 class BookJsonTests {
 	
 	@Autowired

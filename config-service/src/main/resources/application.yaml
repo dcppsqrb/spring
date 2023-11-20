@@ -15,10 +15,6 @@ spring:
             
   lifecycle:
     timeout-per-shutdown-phase: 15s
-            
-  profiles:
-    active:
-    - common-module
     
 server:
   port: 8888   

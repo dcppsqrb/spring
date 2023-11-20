@@ -18,9 +18,9 @@ spring:
     out-of-order: false
     target: latest
     locations: classpath:sql/migration
-    url: jdbc:postgresql://ubuntu01:5432/postgres?currentSchema=batch
-    user: postgres
-    password: postgres
+    #url: jdbc:postgresql://ubuntu01:5432/postgres?currentSchema=batch
+    #user: postgres
+    #password: postgres
     default-schema: batch    
           
   datasource:

@@ -25,12 +25,12 @@ spring:
       uri: http://localhost:8888
 
   datasource:
-    url: jdbc:postgresql://ubuntu01:5432/postgres?currentSchema=dev
+    url: jdbc:postgresql://ubuntu01:5432/postgres
     username: postgres
     password: postgres    
     hikari:
       initializationFailTimeout: 60000     
-      schema: dev
+      schema: polardb_catalog
       connection-timeout: 2000 #ms
       maximum-pool-size: 5
       
@@ -42,10 +42,10 @@ spring:
     out-of-order: false
     target: latest
     locations: classpath:sql/migration
-    #url: jdbc:postgresql://ubuntu01:5432/postgres?currentSchema=dev
-    #user: postgres
-    #password: postgres
-    default-schema: dev
+    #url: jdbc:postgresql://ubuntu01:5432/postgres?currentSchema=polardb_catalog
+    #user: ${spring.datasource.username}
+    #password: ${spring.datasource.username}
+    default-schema: polardb_catalog
     
   jpa:
     hibernate:

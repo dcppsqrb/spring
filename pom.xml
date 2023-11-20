@@ -38,6 +38,9 @@
 		<module>catalog-service</module>
 		<module>batch-service</module>
 		<module>config-service</module>
+		<module>order-service</module>
+		<module>edge-service</module>
+		<module>dispatcher-service</module>
 	</modules>
 
 	<dependencyManagement>
@@ -187,11 +190,12 @@
 						<jvmArguments>-Dfile.encoding=UTF-8	-Djdk.serialSetFilterAfterRead=true</jvmArguments>
 						<layers>
 							<enabled>true</enabled>
-						</layers>
-<!--						<image>-->
+						</layers>						
+						<image>
+							<builder>paketobuildpacks/builder-jammy-base:latest</builder>
 <!--	                        <name>docker.io/library/${project.artifactId}:${project.version}</name>-->
 <!--	                        <publish>false</publish>-->
-<!--                    	</image>-->
+                    	</image>
 <!--	                    <docker>-->
 <!--	                        <publishRegistry>-->
 <!--	                            <username>${env.GITHUB_USERNAME}</username>-->
