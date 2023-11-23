@@ -32,26 +32,26 @@ class BookJsonTests {
     void testSerialize() throws Exception {
         var now = LocalDateTime.now();
         
-        var book = new Book(394L, "1234567890", "Title", "Author", 9.90, "Polarsophia", now, now, 21);
+        var book = new Book(394L, "1234567890", "Title", "Author", 9.90, "Polarsophia", now, now, "jenny", "eline", 21);
         var jsonContent = json.write(book);
         assertThat(jsonContent).extractingJsonPathNumberValue("@.id")
-                .isEqualTo(book.getId().intValue());
+                .isEqualTo(book.id().intValue());
         assertThat(jsonContent).extractingJsonPathStringValue("@.isbn")
-                .isEqualTo(book.getIsbn());
+                .isEqualTo(book.isbn());
         assertThat(jsonContent).extractingJsonPathStringValue("@.title")
-                .isEqualTo(book.getTitle());
+                .isEqualTo(book.title());
         assertThat(jsonContent).extractingJsonPathStringValue("@.author")
-                .isEqualTo(book.getAuthor());
+                .isEqualTo(book.author());
         assertThat(jsonContent).extractingJsonPathNumberValue("@.price")
-                .isEqualTo(book.getPrice());
+                .isEqualTo(book.price());
         assertThat(jsonContent).extractingJsonPathStringValue("@.publisher")
-                .isEqualTo(book.getPublisher());
+                .isEqualTo(book.publisher());
         assertThat(jsonContent).extractingJsonPathStringValue("@.createdDate")
-                .isEqualTo(book.getCreatedDate().format(DateTimeFormatter.ISO_DATE_TIME));
+                .isEqualTo(book.createdDate().format(DateTimeFormatter.ISO_DATE_TIME));
         assertThat(jsonContent).extractingJsonPathStringValue("@.lastModifiedDate")
-                .isEqualTo(book.getLastModifiedDate().format(DateTimeFormatter.ISO_DATE_TIME));
+                .isEqualTo(book.lastModifiedDate().format(DateTimeFormatter.ISO_DATE_TIME));
         assertThat(jsonContent).extractingJsonPathNumberValue("@.version")
-                .isEqualTo(book.getVersion());
+                .isEqualTo(book.version());
     }
 
     @Test
@@ -72,7 +72,7 @@ class BookJsonTests {
                 """;
         assertThat(json.parse(content))
                 .usingRecursiveComparison()
-                .isEqualTo(new Book(394L, "1234567890", "Title", "Author", 9.90, "Polarsophia", instant, instant, 21));
+                .isEqualTo(new Book(394L, "1234567890", "Title", "Author", 9.90, "Polarsophia", LocalDateTime.now(), LocalDateTime.now(), "jenny", "eline", 21));
     }
 
 }

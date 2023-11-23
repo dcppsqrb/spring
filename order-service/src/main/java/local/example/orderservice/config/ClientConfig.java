@@ -3,7 +3,6 @@ package local.example.orderservice.config;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
@@ -20,7 +19,6 @@ import reactor.netty.http.client.HttpClient;
 
 
 @Configuration
-@EnableCaching
 @Slf4j
 public class ClientConfig {
 

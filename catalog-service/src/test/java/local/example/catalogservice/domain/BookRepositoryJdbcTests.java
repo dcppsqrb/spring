@@ -38,7 +38,7 @@ class BookRepositoryJdbcTests {
         Iterable<Book> actualBooks = bookRepository.findAll();
 
         assertThat(StreamSupport.stream(actualBooks.spliterator(), true)
-                .filter(book -> book.getIsbn().equals(book1.getIsbn()) || book.getIsbn().equals(book2.getIsbn()))
+                .filter(book -> book.isbn().equals(book1.isbn()) || book.isbn().equals(book2.isbn()))
                 .collect(Collectors.toList())).hasSize(2);
     }
 
@@ -51,7 +51,7 @@ class BookRepositoryJdbcTests {
         Optional<Book> actualBook = bookRepository.findByIsbn(bookIsbn);
 
         assertThat(actualBook).isPresent();
-        assertThat(actualBook.get().getIsbn()).isEqualTo(book.getIsbn());
+        assertThat(actualBook.get().isbn()).isEqualTo(book.isbn());
     }
 
     @Test
@@ -85,7 +85,7 @@ class BookRepositoryJdbcTests {
 
         bookRepository.deleteByIsbn(bookIsbn);
 
-        assertThat(entityManager.find(Book.class, persistedBook.getId())).isNull();
+        assertThat(entityManager.find(Book.class, persistedBook.id())).isNull();
     }
 
 }

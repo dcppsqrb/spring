@@ -1,21 +1,35 @@
-# Kubeval
+# Catalog Service
 
-`kubeval` is a tool for validating a Kubernetes YAML or JSON configuration file.
-It does so using schemas generated from the Kubernetes OpenAPI specification, and
-therefore can validate schemas for multiple versions of Kubernetes.
+This application is part of the Polar Bookshop system and provides the functionality for managing
+the books in the bookshop catalog. It's part of the project built in the
+[Cloud Native Spring in Action](https://www.manning.com/books/cloud-native-spring-in-action) book
+by [Thomas Vitale](https://www.thomasvitale.com).
 
-[![CircleCI](https://circleci.com/gh/instrumenta/kubeval.svg?style=svg)](https://circleci.com/gh/instrumenta/kubeval)
-[![Go Report
-Card](https://goreportcard.com/badge/github.com/instrumenta/kubeval)](https://goreportcard.com/report/github.com/instrumenta/kubeval)
-[![GoDoc](https://godoc.org/github.com/instrumenta/kubeval?status.svg)](https://godoc.org/github.com/instrumenta/kubeval)
+## REST API
 
+| Endpoint	      | Method   | Req. body  | Status | Resp. body     | Description    		   	     |
+|:---------------:|:--------:|:----------:|:------:|:--------------:|:-------------------------------|
+| `/books`        | `GET`    |            | 200    | Book[]         | Get all the books in the catalog. |
+| `/books`        | `POST`   | Book       | 201    | Book           | Add a new book to the catalog. |
+|                 |          |            | 422    |                | A book with the same ISBN already exists. |
+| `/books/{isbn}` | `GET`    |            | 200    | Book           | Get the book with the given ISBN. |
+|                 |          |            | 404    |                | No book with the given ISBN exists. |
+| `/books/{isbn}` | `PUT`    | Book       | 200    | Book           | Update the book with the given ISBN. |
+|                 |          |            | 201    | Book           | Create a book with the given ISBN. |
+| `/books/{isbn}` | `DELETE` |            | 204    |                | Delete the book with the given ISBN. |
 
+## Useful Commands
+
+| Gradle Command	         | Description                                   |
+|:---------------------------|:----------------------------------------------|
+| `./gradlew bootRun`        | Run the application.                          |
+| `./gradlew build`          | Build the application.                        |
+| `./gradlew test`           | Run tests.                                    |
+| `./gradlew bootJar`        | Package the application as a JAR.             |
+| `./gradlew bootBuildImage` | Package the application as a container image. |
+
+After building the application, you can also run it from the Java CLI:
+
+```bash
+java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar
 ```
-$ kubeval my-invalid-rc.yaml
-WARN - fixtures/my-invalid-rc.yaml contains an invalid ReplicationController - spec.replicas: Invalid type. Expected: [integer,null], given: string
-$ echo $?
-1
-```
-
-
-For full usage and installation instructions see [kubeval.com](https://kubeval.com/).

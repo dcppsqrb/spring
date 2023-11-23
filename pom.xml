@@ -32,6 +32,7 @@
 		<jquery.version>3.4.1</jquery.version>
 		<googleauth.version>1.4.0</googleauth.version>
 		<opencsv.version>4.1</opencsv.version>
+		<testcontainers-keycloak.version>2.3.0</testcontainers-keycloak.version>
 	</properties>
 
 	<modules>
@@ -125,6 +126,12 @@
 			    <version>${opencsv.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>com.github.dasniko</groupId>
+				<artifactId>testcontainers-keycloak</artifactId>
+				<scope>test</scope>
+				<version>${testcontainers-keycloak.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>

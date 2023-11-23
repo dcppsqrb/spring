@@ -1,18 +1,26 @@
+server:
+  port: 9001
+  shutdown: graceful
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5
+
 spring:
   application:
     name: catalog-service
-    
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+  config:
+    import: "optional:configserver:"
   profiles:
     active:
     - testdata
-  
-  mandatory-file-encoding: UTF-8   
-  
-  config:
-    import: "optional:configserver:"
-    
   cloud:
     config:
+      uri: http://localhost:8888
       request-connect-timeout: 5000 # 5s
       request-read-timeout: 5000 # 5s
       fail-fast: false # In production, set to true
@@ -20,19 +28,17 @@ spring:
         max-attempts: 6
         initial-interval: 1000 # 1s
         max-interval: 2000 # 2s
-        multiplier: 1.1  
-      enabled: true
-      uri: http://localhost:8888
-
+        multiplier: 1.1
+        
   datasource:
-    url: jdbc:postgresql://ubuntu01:5432/postgres
     username: postgres
-    password: postgres    
+    password: postgres 
+    url: jdbc:postgresql://ubuntu01:5432/postgres
     hikari:
-      initializationFailTimeout: 60000     
-      schema: polardb_catalog
       connection-timeout: 2000 #ms
       maximum-pool-size: 5
+      initializationFailTimeout: 60000     
+      schema: polardb_catalog
       
   flyway:
     enabled: true
@@ -46,6 +52,11 @@ spring:
     #user: ${spring.datasource.username}
     #password: ${spring.datasource.username}
     default-schema: polardb_catalog
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://ubuntu01.domain.local:8543/realms/PolarBookshop
     
   jpa:
     hibernate:
@@ -56,33 +67,18 @@ spring:
 #        generate_statistics: true
 #        dialect: org.hibernate.dialect.PostgreSQLDialect #deprecated
     show-sql: true   
-    open-in-view: false     
-       
+    open-in-view: false            
   sql:
     init:
       platform: postgres
       mode: never   
-
-  lifecycle:
-    timeout-per-shutdown-phase: 15s
-                  
+  mandatory-file-encoding: UTF-8   
+                      
 management:
   endpoints:
     web:
       exposure:
         include: refresh
 
-                   
-server:
-  port: 9001
-  shutdown: graceful
-  tomcat:
-    connection-timeout: 2s
-    keep-alive-timeout: 15s        
-    threads:
-      max: 50
-      min-spare: 5  
-
-          
 polar:
   greeting: Welcome to the local book catalog!

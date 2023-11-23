@@ -1,10 +1,10 @@
 server:
   port: 9002
   shutdown: graceful
-  tomcat:
+  netty:
     connection-timeout: 2s
-    keep-alive-timeout: 15s
-    
+    idle-timeout: 15s
+
 spring:
   application:
     name: order-service
@@ -22,7 +22,7 @@ spring:
       schema: polardb_order
   flyway:
     user: ${spring.r2dbc.username}
-    password: ${spring.r2dbc.username}
+    password: ${spring.r2dbc.password}
     url: jdbc:postgresql://ubuntu01:5432/postgres
     enabled: true
     baseline-version: 1.0
@@ -36,7 +36,7 @@ spring:
     import: "optional:configserver:"
   cloud:
     config:
-      uri: http://localhost:8888    
+      uri: http://localhost:8888
       request-connect-timeout: 5000 # 5s
       request-read-timeout: 5000 # 5s
       fail-fast: false # In production, set to true
@@ -44,7 +44,7 @@ spring:
         max-attempts: 6
         initial-interval: 1000 # 1s
         max-interval: 2000 # 2s
-        multiplier: 1.1  
+        multiplier: 1.1
       enabled: true
     function:
       definition: dispatchOrder
@@ -66,6 +66,11 @@ spring:
     username: user
     password: password
     connection-timeout: 5s    
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://ubuntu01.domain.local:8543//realms/PolarBookshop
                 
   profiles:
     active:
