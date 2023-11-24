@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 import local.example.catalogservice.domain.Book;
 import local.example.catalogservice.domain.BookService;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("books")
+@Slf4j
 public class BookController {
 	private final BookService bookService;
 
@@ -26,28 +28,33 @@ public class BookController {
 
     @GetMapping
     public Iterable<Book> get() {
+		log.info("Fetching the list of books in the catalog");
         return bookService.viewBookList();
     }
 
     @GetMapping("{isbn}")
     public Book getByIsbn(@PathVariable String isbn) {
-        return bookService.viewBookDetails(isbn);
+    	log.info("Fetching the book with ISBN {} from the catalog", isbn);
+    	return bookService.viewBookDetails(isbn);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Book post(@Valid @RequestBody Book book) {
-        return bookService.addBookToCatalog(book);
+    	log.info("Adding a new book to the catalog with ISBN {}", book.getIsbn());
+    	return bookService.addBookToCatalog(book);
     }
 
     @DeleteMapping("{isbn}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable String isbn) {
-        bookService.removeBookFromCatalog(isbn);
+    	log.info("Deleting book with ISBN {}", isbn);
+    	bookService.removeBookFromCatalog(isbn);
     }
 
     @PutMapping("{isbn}")
     public Book put(@PathVariable String isbn, @Valid @RequestBody Book book) {
-        return bookService.editBookDetails(isbn, book);
+    	log.info("Updating book with ISBN {}", isbn);
+    	return bookService.editBookDetails(isbn, book);
     }
 }

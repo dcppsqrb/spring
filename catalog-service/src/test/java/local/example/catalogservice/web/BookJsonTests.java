@@ -35,23 +35,23 @@ class BookJsonTests {
         var book = new Book(394L, "1234567890", "Title", "Author", 9.90, "Polarsophia", now, now, "jenny", "eline", 21);
         var jsonContent = json.write(book);
         assertThat(jsonContent).extractingJsonPathNumberValue("@.id")
-                .isEqualTo(book.id().intValue());
+                .isEqualTo(book.getId().intValue());
         assertThat(jsonContent).extractingJsonPathStringValue("@.isbn")
-                .isEqualTo(book.isbn());
+                .isEqualTo(book.getIsbn());
         assertThat(jsonContent).extractingJsonPathStringValue("@.title")
-                .isEqualTo(book.title());
+                .isEqualTo(book.getTitle());
         assertThat(jsonContent).extractingJsonPathStringValue("@.author")
-                .isEqualTo(book.author());
+                .isEqualTo(book.getAuthor());
         assertThat(jsonContent).extractingJsonPathNumberValue("@.price")
-                .isEqualTo(book.price());
+                .isEqualTo(book.getPrice());
         assertThat(jsonContent).extractingJsonPathStringValue("@.publisher")
-                .isEqualTo(book.publisher());
+                .isEqualTo(book.getPublisher());
         assertThat(jsonContent).extractingJsonPathStringValue("@.createdDate")
-                .isEqualTo(book.createdDate().format(DateTimeFormatter.ISO_DATE_TIME));
+                .isEqualTo(book.getCreatedDate().format(DateTimeFormatter.ISO_DATE_TIME));
         assertThat(jsonContent).extractingJsonPathStringValue("@.lastModifiedDate")
-                .isEqualTo(book.lastModifiedDate().format(DateTimeFormatter.ISO_DATE_TIME));
+                .isEqualTo(book.getLastModifiedDate().format(DateTimeFormatter.ISO_DATE_TIME));
         assertThat(jsonContent).extractingJsonPathNumberValue("@.version")
-                .isEqualTo(book.version());
+                .isEqualTo(book.getVersion());
     }
 
     @Test

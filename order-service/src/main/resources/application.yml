@@ -70,7 +70,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://ubuntu01.domain.local:8543//realms/PolarBookshop
+          issuer-uri: https://ubuntu01.domain.local:8543/realms/PolarBookshop
                 
   profiles:
     active:
